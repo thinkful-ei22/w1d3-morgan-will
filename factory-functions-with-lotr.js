@@ -8,7 +8,7 @@ const createCharacter = function(nickname, race, origin, attack, defense) {
     attack,
     defense,
     describe: function() {
-      console.log(`${this.name} is a ${this.race} from ${this.origin}.`);
+      console.log(`${this.nickname} is a ${this.race} from ${this.origin}.`);
     },
     evaluateFight: function(character) {
       let x = this.attack - character.defense;
@@ -34,4 +34,11 @@ const characters = [
 
 characters[5] = createCharacter('arwen', 'half-elf', 'rivendell', 5, 5);
 
-console.log(characters);
+characters.find(function(character){
+  return character.nickname === 'aragorn';
+  
+}).describe();
+
+const justHobbits = characters.filter(character => character.race === 'hobbit');
+const heavyHitters = characters.filter(character => character.attack > 5);
+
