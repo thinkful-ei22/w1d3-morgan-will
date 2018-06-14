@@ -1,4 +1,5 @@
 'use strict';
+
 const jobProfiler = function(name, jobTitle){
   this.name = name;
   this.jobTitle = jobTitle;

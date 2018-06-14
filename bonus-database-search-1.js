@@ -10,15 +10,45 @@ const HEROES = [
   { id: 7, name: 'Hulk', squad: 'Avengers' },
 ];
 
-const findOne = function(arr, query) {
-    let keys = Object.keys(query); //makes array of keys of query
-    let hero = 'null'; //default return is undefined
-    keys.forEach(function(key){   //loops through query keys
-        hero = arr.find(function(val){  //finds 
-            return val[key] === query[key];
-        });
-    });
-    return hero;  //returns the found hero or 'undefined'
+//Returns FIRST ellement in array to match all query key-values
+const findOne = function(heroArr, query) {
+  const queryKeys = Object.keys(query);
+  let possibleHeros = [];
+  heroArr.forEach( function(hero) {
+    let flag = true;
+    for(let i = 0; i < queryKeys.length; i++) {
+      if (query[queryKeys[i]] !== hero[queryKeys[i]]) {
+        flag = false;
+      }
+    }
+    if(flag) {
+      possibleHeros.push(hero);
+    }
+  });
+  return possibleHeros[0];
 };
 
-console.log(findOne(HEROES, { name: 'Wonder Woman' }));
+//Returns ALL elements in array that match all query key-values
+const findAll = function(heroArr, query) {
+  const queryKeys = Object.keys(query);
+  let possibleHeros = [];
+  heroArr.forEach( function(hero) {
+    let flag = true;
+    for(let i = 0; i < queryKeys.length; i++) {
+      if (query[queryKeys[i]] !== hero[queryKeys[i]]) {
+        flag = false;
+      }
+    }
+    if(flag) {
+      possibleHeros.push(hero);
+    }
+  });
+  return possibleHeros;
+};
+
+let test_findOne = findOne(HEROES, { id: 1, name: 'Captain America'});
+console.log(test_findOne);
+
+let test_findAll = findAll(HEROES, { squad: 'Avengers'});
+console.log(test_findAll);
+
