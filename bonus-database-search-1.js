@@ -25,7 +25,7 @@ const findOne = function(heroArr, query) {
       possibleHeros.push(hero);
     }
   });
-  return possibleHeros[0];
+  return possibleHeros.length === 0 ? null : possibleHeros[0];
 };
 
 //Returns ALL elements in array that match all query key-values
@@ -43,10 +43,10 @@ const findAll = function(heroArr, query) {
       possibleHeros.push(hero);
     }
   });
-  return possibleHeros;
+  return possibleHeros.length === 0 ? null : possibleHeros;
 };
 
-let test_findOne = findOne(HEROES, { id: 1, name: 'Captain America'});
+let test_findOne = findOne(HEROES, { id: 1, name: 'Captain Mexico', squad: 'Avengers'});
 console.log(test_findOne);
 
 let test_findAll = findAll(HEROES, { squad: 'Avengers'});
